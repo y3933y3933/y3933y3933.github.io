@@ -1,9 +1,14 @@
 import * as React from "react"
-
+import Seo from "../components/seo"
 
 const IndexPage = () => (
-  <section>index</section>
+  <>
+    <Seo title="Home" />
+    <section>index</section>
+  </>
+
 )
+
 
 
 export default IndexPage

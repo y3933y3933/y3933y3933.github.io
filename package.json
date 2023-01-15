@@ -11,14 +11,18 @@
     "gatsby-plugin-image": "^3.4.0",
     "gatsby-plugin-layout": "^4.4.0",
     "gatsby-plugin-manifest": "^5.4.0",
+    "gatsby-plugin-react-helmet": "^6.4.0",
     "gatsby-plugin-react-svg": "^3.3.0",
     "gatsby-plugin-sharp": "^5.4.0",
     "gatsby-plugin-styled-components": "^6.4.0",
+    "gatsby-remark-images": "^7.4.0",
     "gatsby-source-filesystem": "^5.4.0",
+    "gatsby-transformer-remark": "^6.4.0",
     "gatsby-transformer-sharp": "^5.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
+    "slugify": "^1.6.5",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {

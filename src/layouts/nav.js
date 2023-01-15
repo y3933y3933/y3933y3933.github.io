@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled, { css, attrs } from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Link } from "gatsby"
 
 
@@ -68,11 +68,13 @@ const PcLink = styled(Link)`
 
 
 
+
+
 const Nav = () => {
   return (<PcNav>
-    <PcLink to="/blog" activeClassName="active" >Blog</PcLink>
-    <PcLink to="/project" activeClassName="active">Project</PcLink>
-    <PcLink to="/about" activeClassName="active">About</PcLink>
+    <PcLink partiallyActive={true} to="/blog" activeClassName="active" >Blog</PcLink>
+    <PcLink partiallyActive={true} to="/project" activeClassName="active">Project</PcLink>
+    <PcLink partiallyActive={true} to="/about" activeClassName="active">About</PcLink>
   </PcNav >)
 }
 

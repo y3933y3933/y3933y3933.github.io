@@ -1,18 +1,53 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/
- */
+const slugify = require('slugify')
+const path = require(`path`)
 
-/**
- * @type {import('gatsby').GatsbyNode['createPages']}
- */
-exports.createPages = async ({ actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-  createPage({
-    path: "/using-dsg",
-    component: require.resolve("./src/templates/using-dsg.js"),
-    context: {},
-    defer: true,
-  })
+  const component = path.resolve(`./src/templates/postDetail.js`)
+
+  const allBlogPostsQuery = `
+    query BlogPosts {
+      allMarkdownRemark {
+        edges {
+          node {
+            id
+            frontmatter {
+              title
+            }
+          }
+        }
+      }
+    }
+  `
+
+  return graphql(allBlogPostsQuery)
+    .then(result => {
+      if (result.errors) {
+        throw result.errors
+      }
+
+      // Get the posts
+      const posts = result.data.allMarkdownRemark.edges
+
+      // Loop through posts and create a page for each post
+      posts.forEach(({ node }) => {
+        // Create a slug for the path using the post title
+        // For example, 'Our First Post' => '/post/our-first-post'
+        let path = '/blog/' + slugify(node.frontmatter.title, { lower: true })
+
+        createPage({
+          path,
+          component,
+          context: {
+            id: node.id
+          }
+        })
+
+        return null
+
+      })
+    })
+    .catch(e => {
+      throw e
+    })
 }
