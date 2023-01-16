@@ -1,8 +1,9 @@
 const theme = {
     color: {
-        primary:'#52d3aa',
+        primary: '#52d3aa',
         secondary: '#5f6c80',
-        text: '#2d3748'
+        text: '#2d3748',
+        link: '#3273dc'
     },
     size: {
         sm: '320px',

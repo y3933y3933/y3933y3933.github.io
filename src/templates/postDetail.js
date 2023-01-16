@@ -1,10 +1,12 @@
 import React from 'react'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+// import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { MDXProvider } from "@mdx-js/react"
+
 import { graphql } from 'gatsby'
+import Seo from '../components/seo'
 import styled from 'styled-components'
 
 const Article = styled.article`
-    width:100%;
 `
 
 
@@ -15,68 +17,61 @@ const ArticleTitle = styled.h1`
 
 
 
-const PostDetail = ({ pageContext, data }) => {
-    // const { id } = pageContext
-    const { post } = data;
+const SubWrapper = styled.div`
+ display:flex;
+ color:${(props) => props.theme.color.secondary};
+`
 
-    return (
-        <>
-            {/* <Seo title={post.frontmatter.title} /> */}
-            <Article>
-                <ArticleTitle>{post.frontmatter.title}</ArticleTitle>
-                {/* <p style={styles.title}>{post.frontmatter.title}</p> */}
-                <span style={styles.date}>{post.frontmatter.date}</span>
-                <p style={styles.description}>{post.frontmatter.description}</p>
-                <div style={styles.imageWrapper}>
-                    <GatsbyImage image={getImage(data.post.frontmatter.featuredImage)} alt={post.frontmatter.altText} />
-                </div>
-                <div
-                    dangerouslySetInnerHTML={{ __html: post.html }}
-                    style={styles.html}
-                />
-            </Article>
-        </>
-    )
+const Tag = styled.span`
+color:${(props) => props.theme.color.link};
+text-transform:uppercase;
+cursor:pointer;
+
+&:hover{
+ text-decoration-line: underline;
+
+}
+`
+
+const PostDetail = ({ data, children }) => {
+  const { mdx } = data;
+  console.log(children)
+  return (
+    <>
+      <Seo title={mdx.frontmatter.title} />
+      <Article>
+        {/* <GatsbyImage image={getImage(frontmatter.featuredImage)} alt={post.frontmatter.altText} imgStyle={{ width: '100%' }} /> */}
+        <ArticleTitle>{mdx.frontmatter.title}</ArticleTitle>
+        <SubWrapper>
+          <time dateTime={mdx.frontmatter.date}>{mdx.frontmatter.date}</time>
+          <span>&nbsp;—&nbsp;</span>
+          <Tag>{mdx.frontmatter.tag}</Tag>
+        </SubWrapper>
+        <MDXProvider>
+          {children}
+        </MDXProvider>
+
+      </Article>
+    </>
+  )
 }
 
-const styles = {
-    title: {
-        fontSize: '35px',
-        marginBottom: '15px'
-    },
-    id: { opacity: 0.5 },
-    date: {
-        fontSize: '17px',
-        color: 'gray'
-    },
-    description: {
-        fontSize: '17px',
-        margin: '30px 0'
-    },
-    imageWrapper: {
-        textAlign: 'center',
-    },
-    html: {
-        maxWidth: "700px",
-        margin: "20px 0",
-        textAlign: "justify",
-        lineHeight: "1.5em",
-        fontSize: "1rem",
-    }
-}
 
 export default PostDetail
 
 export const pageQuery = graphql`
   query BlogPostById($id: String!) {
-    post: markdownRemark(id: { eq: $id }) {
-      html
+    mdx(id: { eq: $id }) {
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
-        description
+        date(formatString: "YYYY/MM/DD")
         altText
-       
+        tag
+        featuredImage {
+            childImageSharp {
+              gatsbyImageData(width: 400, placeholder: DOMINANT_COLOR)
+            }
+        }      
       }
     }
   }

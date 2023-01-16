@@ -272,9 +272,7 @@ legend {
 ol,
 ul,
 menu {
-  list-style: none;
   margin: 0;
-  padding: 0;
 }
 
 /*

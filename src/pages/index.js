@@ -4,7 +4,7 @@ import Seo from "../components/seo"
 const IndexPage = () => (
   <>
     <Seo title="Home" />
-    <section>index</section>
+    <section>我是首頁</section>
   </>
 
 )

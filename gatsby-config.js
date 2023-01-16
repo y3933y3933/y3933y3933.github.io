@@ -76,18 +76,10 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 970,
-              linkImagesToOriginal: true,
-            },
-          }
-        ]
-      }
+        extensions: [`.md`, `.mdx`],
+      },
     },
   ],
 }

@@ -3,21 +3,23 @@ const path = require(`path`)
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-  const component = path.resolve(`./src/templates/postDetail.js`)
+  const postTemplate = path.resolve(`./src/templates/postDetail.js`)
 
   const allBlogPostsQuery = `
-    query BlogPosts {
-      allMarkdownRemark {
-        edges {
-          node {
-            id
-            frontmatter {
-              title
-            }
-          }
+  query MyBlogPosts {
+    allMdx(sort: {frontmatter: {date: DESC}}) {
+      nodes {
+        id
+        frontmatter {
+          title
         }
+        internal{
+          contentFilePath
+        }
+       
       }
     }
+  }
   `
 
   return graphql(allBlogPostsQuery)
@@ -27,19 +29,19 @@ exports.createPages = async ({ graphql, actions }) => {
       }
 
       // Get the posts
-      const posts = result.data.allMarkdownRemark.edges
+      const posts = result.data.allMdx.nodes
 
       // Loop through posts and create a page for each post
-      posts.forEach(({ node }) => {
+      posts.forEach((post) => {
         // Create a slug for the path using the post title
         // For example, 'Our First Post' => '/post/our-first-post'
-        let path = '/blog/' + slugify(node.frontmatter.title, { lower: true })
+        let path = '/blog/' + slugify(post.frontmatter.title,{lower:true})
 
         createPage({
           path,
-          component,
+          component:`${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
           context: {
-            id: node.id
+            id: post.id
           }
         })
 

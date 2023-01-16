@@ -14,8 +14,13 @@ const StyledFooter = styled.footer`
 
 const StyledLink = styled.a`
     text-transform:none;
-    color:#3273dc;
+    color:${(props)=>props.theme.color.link};
     cursor:pointer;
+
+    &:hover{
+        text-decoration-line: underline;
+
+    }
 `
 
 const Footer = () => <StyledFooter>&copy;2023 by CHIAO.  Powered by &nbsp;<StyledLink href="https://www.gatsbyjs.com/" target="_blank">Gatsby.js</StyledLink>.</StyledFooter>

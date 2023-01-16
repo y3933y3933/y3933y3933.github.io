@@ -31,7 +31,9 @@ display:none;
   right: 0;
 }
 
-
+&:hover{
+  text-decoration:none;
+}
 
 
 `
