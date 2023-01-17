@@ -5,13 +5,14 @@ import { MDXProvider } from "@mdx-js/react"
 import { graphql } from 'gatsby'
 import Seo from '../components/seo'
 import styled from 'styled-components'
-
+import components from './markdownStyles'
 const Article = styled.article`
 `
 
 
 const ArticleTitle = styled.h1`
-    font-size:32px;
+    font-size:2.25rem;
+    line-height:1.25;
     font-weight:700;
 `
 
@@ -35,7 +36,6 @@ cursor:pointer;
 
 const PostDetail = ({ data, children }) => {
   const { mdx } = data;
-  console.log(children)
   return (
     <>
       <Seo title={mdx.frontmatter.title} />
@@ -47,7 +47,7 @@ const PostDetail = ({ data, children }) => {
           <span>&nbsp;—&nbsp;</span>
           <Tag>{mdx.frontmatter.tag}</Tag>
         </SubWrapper>
-        <MDXProvider>
+        <MDXProvider components={components} >
           {children}
         </MDXProvider>
 

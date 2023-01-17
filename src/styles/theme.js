@@ -10,6 +10,14 @@ const theme = {
         md: '768px',
         lg: '1024px',
         xl: '1440px'
+    },
+    langBackground: {
+        js: '#f7df1e',
+        jsx: '#f7df1e'
+    },
+    langColor: {
+        js: 'black',
+        jsx: 'black'
     }
 }
 
