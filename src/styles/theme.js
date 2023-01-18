@@ -2,6 +2,7 @@ const theme = {
     color: {
         primary: '#52d3aa',
         secondary: '#5f6c80',
+        highlight:'#f05d23',
         text: '#2d3748',
         link: '#3273dc'
     },

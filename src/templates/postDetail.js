@@ -1,11 +1,11 @@
 import React from 'react'
 // import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { MDXProvider } from "@mdx-js/react"
-
 import { graphql } from 'gatsby'
 import Seo from '../components/seo'
 import styled from 'styled-components'
 import components from './markdownStyles'
+import TableOfContents from '../components/tableOfContents'
 const Article = styled.article`
 `
 
@@ -36,6 +36,7 @@ cursor:pointer;
 
 const PostDetail = ({ data, children }) => {
   const { mdx } = data;
+  console.log(mdx)
   return (
     <>
       <Seo title={mdx.frontmatter.title} />
@@ -47,6 +48,8 @@ const PostDetail = ({ data, children }) => {
           <span>&nbsp;—&nbsp;</span>
           <Tag>{mdx.frontmatter.tag}</Tag>
         </SubWrapper>
+
+        <TableOfContents headings={mdx.tableOfContents.items} />
         <MDXProvider components={components} >
           {children}
         </MDXProvider>
@@ -62,6 +65,7 @@ export default PostDetail
 export const pageQuery = graphql`
   query BlogPostById($id: String!) {
     mdx(id: { eq: $id }) {
+      tableOfContents
       frontmatter {
         title
         date(formatString: "YYYY/MM/DD")

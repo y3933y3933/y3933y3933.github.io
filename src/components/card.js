@@ -7,7 +7,6 @@ import * as slugify from 'slugify'
 
 const Wrapper = styled.section`
  display:flex;
- cursor:pointer;
  flex-direction:column;
 
  @media (min-width:${(props) => props.theme.size.md}){
@@ -15,8 +14,10 @@ const Wrapper = styled.section`
 }
 `
 const Title = styled.h2`
-  font-size:28px;
-  margin-bottom:8px;
+font-size:1.875rem;
+cursor:pointer;
+line-height:1.25;
+  margin-bottom:24px;
 `
 
 
@@ -39,12 +40,12 @@ const Block = styled.div`
 `
 
 const Excerpt = styled.p`
-  margin-bottom:16px;
+  font-weight:500;
+  font-size:1.25rem;
+  line-height:1.8;
+  margin-bottom:24px;
+  color:${(props) => props.theme.color.secondary};
 `
-
-
-
-
 
 
 const Footer = styled.div`
@@ -56,17 +57,17 @@ justify-content:space-between;
 
 const Tag = styled.span`
  display:inline-block;
- color:${(props) => props.theme.color.link};
+ color:${(props) => props.theme.color.highlight};
  text-transform:uppercase;
  cursor:pointer;
-
- &:hover{
-  text-decoration-line: underline;
-}
+ letter-spacing:1px;
+ margin-bottom:16px;
 `
 
 
 const ReadMore = styled(Link)`
+color:${(props) => props.theme.color.highlight};
+
   &:hover{
     text-decoration-line: underline;
     text-decoration-style: dotted;
