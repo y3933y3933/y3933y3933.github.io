@@ -21,7 +21,6 @@ const Header = styled.div`
 `
 
 const Blog = ({ data }) => {
-  const { allMdx } = data
 
   return (
     <>
@@ -30,7 +29,7 @@ const Blog = ({ data }) => {
       </Header>
 
       <CardList>
-        {allMdx?.nodes.map((node) => {
+        {data.allMdx?.nodes.map((node) => {
           return <Card key={node.id} {...node} />
         })}
 
