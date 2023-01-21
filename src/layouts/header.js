@@ -22,7 +22,7 @@ const StyledContainer = styled.div`
 
     position:relative;
     z-index:99;
-    height:50px;
+    // height:48px;
 
     @media (min-width:${(props) => props.theme.size.md}){
       border-bottom: none;
@@ -32,15 +32,16 @@ const StyledContainer = styled.div`
 `
 
 const LogoWrapper = styled.div`
-  padding-left:10px;
+  padding:10px;
 `
 
 
 const StyledLogo = styled(Link)`
   & svg{
-    width:45px;
-    height:45px;
+    width:40px;
+    height:40px;
   }
+
 `
 
 

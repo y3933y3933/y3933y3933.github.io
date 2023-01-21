@@ -2,10 +2,10 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 import Card from "../components/card"
+import Seo from '../components/seo'
 
 const CardList = styled.div`
 width:100%;
-// padding: 24px 0;
 `
 
 const Title = styled.h2`
@@ -24,6 +24,7 @@ const Blog = ({ data }) => {
 
   return (
     <>
+      <Seo title="Blog" />
       <Header>
         <Title>最新文章</Title>
       </Header>
@@ -37,6 +38,7 @@ const Blog = ({ data }) => {
     </>
   )
 }
+
 
 
 export const blogPostsQuery = graphql`

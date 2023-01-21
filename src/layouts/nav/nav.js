@@ -40,9 +40,14 @@ letter-spacing:0.125rem;
 
 const Wrapper = styled.nav`
 padding-right:10px;
+display:none;
 &>a:not(:first-child){
     margin-left:40px;
  }
+
+ @media (min-width:${(props) => props.theme.size.md}){
+  display:block
+}
 `
 
 const StyledLink = styled(Link)`
@@ -63,8 +68,8 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
 
 const IconBox = styled.label`
     background-color: #eee;
-    height:3rem;
-    width:3rem;
+    height:60px;
+    width:60px;
     z-index:99;
     position:relative;
     cursor: pointer;
@@ -110,11 +115,16 @@ const Icon = styled.span`
     
 `
 
+const IconWrapper = styled.div`
+display:block;
+@media (min-width:${(props) => props.theme.size.md}){
+  display:none;
+}
+`
 
 
 const Nav = ({ setShowMobileNav, showMobileNav }) => {
   const isMd = useMediaQuery('(min-width:768px)')
-
   const handleToggle = (e) => {
     setShowMobileNav(e.target.checked)
   }
@@ -122,17 +132,30 @@ const Nav = ({ setShowMobileNav, showMobileNav }) => {
   return (
     <>
       {
-        isMd ? <Wrapper>
+        isMd && <Wrapper>
           <StyledLink partiallyActive={true} to="/blog" activeClassName="active" >Blog</StyledLink>
           <StyledLink partiallyActive={true} to="/project" activeClassName="active">Project</StyledLink>
           <StyledLink partiallyActive={true} to="/about" activeClassName="active">About</StyledLink>
-        </Wrapper> : <> <Checkbox id="toggle" onChange={handleToggle}  checked={showMobileNav}/>
-          <IconBox htmlFor="toggle">
-            <Icon className={`${showMobileNav && 'active'}`} />
-          </IconBox></>
+        </Wrapper>
       }
 
+
+      {
+        !isMd && <IconWrapper>
+          <Checkbox id="toggle" onChange={handleToggle} checked={showMobileNav} />
+          <IconBox htmlFor="toggle">
+            <Icon className={`${showMobileNav && 'active'}`} />
+          </IconBox>
+        </IconWrapper>
+      }
+
+
     </>
+
+
+
+
+
   )
 }
 

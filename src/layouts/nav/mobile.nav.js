@@ -18,7 +18,7 @@ const NavWrapper = styled.nav`
 `
 
 const NavList = styled.div`
-    margin-top:48px;
+    margin-top:60px;
     width:100%;
 `
 
