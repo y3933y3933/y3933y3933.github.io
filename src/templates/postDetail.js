@@ -21,6 +21,7 @@ const ArticleTitle = styled.h1`
 const SubWrapper = styled.div`
  display:flex;
  color:${(props) => props.theme.color.secondary};
+ margin-bottom:20px;
 `
 
 const Tag = styled.span`
@@ -48,7 +49,6 @@ const PostDetail = ({ data, children }) => {
           <span>&nbsp;—&nbsp;</span>
           <Tag>{mdx.frontmatter.tag}</Tag>
         </SubWrapper>
-
         <TableOfContents headings={mdx.tableOfContents.items} />
         <MDXProvider components={components} >
           {children}

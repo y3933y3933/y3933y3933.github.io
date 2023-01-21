@@ -57,7 +57,7 @@ justify-content:space-between;
 
 const Tag = styled.span`
  display:inline-block;
- color:${(props) => props.theme.color.highlight};
+ color:${(props) => props.theme.color.link};
  text-transform:uppercase;
  cursor:pointer;
  letter-spacing:1px;
@@ -66,8 +66,6 @@ const Tag = styled.span`
 
 
 const ReadMore = styled(Link)`
-color:${(props) => props.theme.color.highlight};
-
   &:hover{
     text-decoration-line: underline;
     text-decoration-style: dotted;
@@ -77,7 +75,6 @@ color:${(props) => props.theme.color.highlight};
 
 
 const Card = ({frontmatter,excerpt}) => {
-
   const path = '/blog/' + slugify(frontmatter.title, { lower: true })
   return <Wrapper>
     <Block>

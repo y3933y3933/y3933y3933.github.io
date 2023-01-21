@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
-
 import theme from "prism-react-renderer/themes/github"
-
 import styled from "styled-components";
+import FileIcon from '../images/icons/file.inline.svg'
 
 
-const langRegex = /(?<=language-).*((?=,)|\$)/g
+
+const langRegex = /(?<=language-).*(?=,)|(?<=language-).*$/g
 const fileRegex = /(?<=,file=).*(?=,|)/g
 
 const Pre = styled.pre.attrs((props) => ({
@@ -54,15 +54,36 @@ const CopyButton = styled.button`
 
 const CodeBlockWrapper = styled.div`
   margin:16px 0;
+  border:1px solid #e5e5e5;
+  border-radius:4px;
 `
 
 const File = styled.div`
   font-size:14px;
-  padding:4px 1rem;
-  background:#fff9c4;
-  color:#2d3748;
-  border-radius:4px 4px 0 0 ;
+//   padding:4px 1rem;
+padding-left:1rem;
+//   background:#fff9c4;
+  display:flex;
 `
+
+const FileText = styled.span`
+color:#2d3748;
+flex-grow:1;
+border-bottom:2px solid #63b3ed;
+padding-top:4px;
+padding-bottom:4px;
+display:flex;
+align-items:center;
+`
+
+const StyleFileIcon = styled(FileIcon)`
+  width:16px;
+  height:16px;
+  display:inline-block;
+  margin-right:4px;
+`
+
+
 const Line = styled.span`
   display:inline-block;
   margin-right:1rem;
@@ -108,7 +129,10 @@ const CodeBlock = props => {
         <Highlight {...defaultProps} code={code} language={language} theme={theme}>
             {({ style, tokens, getLineProps, getTokenProps }) => (
                 <CodeBlockWrapper>
-                    {file && <File>{file}</File>}
+                    {file && <File>
+                        <FileText>                        <StyleFileIcon />
+                            {file}</FileText>
+                    </File>}
                     <Pre lang={language}>
                         <CopyButton onClick={() => copyToClipboard(code)} isCopied={isCopied}>{isCopied ? 'Copied' : 'Copy'}</CopyButton>
                         {

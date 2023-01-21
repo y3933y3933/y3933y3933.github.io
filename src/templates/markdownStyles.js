@@ -32,7 +32,6 @@ const BlockQuote = styled.blockquote`
 background-color: #eeeeee;
 border-left:4px solid #63b3ed;
 padding-left:2rem;
-font-style: italic;
 padding-top:10px;
 padding-bottom:10px;
 font-size:1.25rem;
@@ -43,6 +42,12 @@ const Th = styled.th`
   font-weight:700;
 `
 
+const Code = styled.code`
+color: #c7254e;
+background-color: #f9f2f4;
+overflow-wrap: break-word;
+`
+
 const components = {
     h1: props => <H1 {...props} />,
     h2: props => <H2 {...props} />,
@@ -51,7 +56,8 @@ const components = {
     hr: props => <Hr {...props} />,
     blockquote: props => <BlockQuote {...props} />,
     th: props => <Th {...props} />,
-    pre: props => <CodeBlock {...props} />
+    pre: props => <CodeBlock {...props} />,
+    code: props => <Code {...props} />
 }
 
 export default components
