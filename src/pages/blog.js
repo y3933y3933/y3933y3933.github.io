@@ -49,14 +49,14 @@ query MyQuery {
           title
           date(formatString: "YYYY/MM/DD")
           tag
-          featuredImage {
-            childImageSharp {
-              gatsbyImageData(width: 400, placeholder: DOMINANT_COLOR)
-            }
-          }
         }
         excerpt(pruneLength: 100)
         id
+        featuredImg {
+          childImageSharp {
+            gatsbyImageData(height:320, layout: FIXED)
+          }
+        }
       }
     
   }

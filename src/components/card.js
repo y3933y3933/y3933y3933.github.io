@@ -6,11 +6,13 @@ import * as slugify from 'slugify'
 
 
 const Wrapper = styled.section`
- display:flex;
- flex-direction:column;
+  display:grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+
 
  @media (min-width:${(props) => props.theme.size.md}){
-  flex-direction:row;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
 }
 `
 const Title = styled.h2`
@@ -25,18 +27,23 @@ const DescriptionBlock = styled.div`
   flex:1;
   padding:24px;
   background:#f9f9f9;
-
+  display:flex;
+  flex-direction:column;
   @media (min-width:${(props) => props.theme.size.md}){
     padding:32px;
   }
 `
 
 const Block = styled.div`
- flex:1;
+ 
  display:flex;
  align-items-center;
  justify-content:center;
  background:black;
+
+ @media (min-width:${(props) => props.theme.size.md}){
+  flex:1;
+}
 `
 
 const Excerpt = styled.p`
@@ -53,6 +60,7 @@ color:${(props) => props.theme.color.secondary};
 font-size:14px;
 display:flex;
 justify-content:space-between;
+margin-top:auto;
 `
 
 const Tag = styled.span`
@@ -74,12 +82,14 @@ const ReadMore = styled(Link)`
 `
 
 
-const Card = ({frontmatter,excerpt}) => {
+const Card = ({ frontmatter, excerpt, featuredImg }) => {
   const path = '/blog/' + slugify(frontmatter.title, { lower: true })
   return <Wrapper>
     <Block>
-      <GatsbyImage image={getImage(frontmatter.featuredImage)}
+      <GatsbyImage image={getImage(featuredImg)}
         alt=""
+        objectFit='contain'
+        
       />
 
     </Block>

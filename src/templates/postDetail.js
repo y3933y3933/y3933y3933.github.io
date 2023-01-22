@@ -42,7 +42,7 @@ const PostDetail = ({ data, children }) => {
     <>
       <Seo title={mdx.frontmatter.title} />
       <Article>
-        {/* <GatsbyImage image={getImage(frontmatter.featuredImage)} alt={post.frontmatter.altText} imgStyle={{ width: '100%' }} /> */}
+        {/* <GatsbyImage image={getImage(frontmatter.featuredImg )} alt={post.frontmatter.altText} imgStyle={{ width: '100%' }} /> */}
         <ArticleTitle>{mdx.frontmatter.title}</ArticleTitle>
         <SubWrapper>
           <time dateTime={mdx.frontmatter.date}>{mdx.frontmatter.date}</time>
@@ -69,14 +69,13 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "YYYY/MM/DD")
-        altText
-        tag
-        featuredImage {
-            childImageSharp {
-              gatsbyImageData(width: 400, placeholder: DOMINANT_COLOR)
-            }
-        }      
+        tag  
       }
+      featuredImg  {
+        childImageSharp {
+          gatsbyImageData(width: 400, placeholder: DOMINANT_COLOR)
+        }
+    }    
     }
   }
 `
