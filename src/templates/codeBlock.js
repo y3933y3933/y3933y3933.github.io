@@ -13,7 +13,6 @@ const Pre = styled.pre.attrs((props) => ({
     lang: props.lang
 }))`
   font-size:1rem;
-  background:rgb(246, 248, 250);
   position:relative;
   padding:1.8rem 1rem 1rem 1rem;
 
@@ -58,6 +57,7 @@ const CodeBlockWrapper = styled.div`
   border-radius:4px;
   max-width:100%;
   overflow:auto;
+  background:rgb(246, 248, 250);
 `
 
 const File = styled.div`

@@ -79,9 +79,10 @@ const ReadMore = styled(Link)`
 `
 
 const Card = ({ frontmatter, excerpt, featuredImg }) => {
-  const path = "/blog/" + slugify(frontmatter.title, { lower: true })
+  const slug = frontmatter.slug ?? slugify(frontmatter.title, { lower: true })
+  const path = "/blog/" + slug
 
-  
+  console.log(frontmatter)
   return (
     <Wrapper>
       <Block>

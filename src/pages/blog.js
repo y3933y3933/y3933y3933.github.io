@@ -54,6 +54,7 @@ query MyQuery {
           title
           date(formatString: "YYYY/MM/DD")
           tag
+          slug
         }
         excerpt(pruneLength: 100)
         id

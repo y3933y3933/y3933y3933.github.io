@@ -1,7 +1,6 @@
-const slugify = require('slugify')
+const slugify = require("slugify")
 const path = require(`path`)
 const { createRemoteFileNode } = require("gatsby-source-filesystem")
-
 
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
@@ -56,6 +55,7 @@ exports.createPages = async ({ graphql, actions }) => {
         id
         frontmatter {
           title
+          slug
         }
         internal{
           contentFilePath
@@ -76,21 +76,24 @@ exports.createPages = async ({ graphql, actions }) => {
       const posts = result.data.allMdx.nodes
 
       // Loop through posts and create a page for each post
-      posts.forEach((post) => {
+      posts.forEach(post => {
         // Create a slug for the path using the post title
         // For example, 'Our First Post' => '/post/our-first-post'
-        let path = '/blog/' + slugify(post.frontmatter.title,{lower:true})
+
+        const slug =
+          post.frontmatter.slug ??
+          slugify(post.frontmatter.title, { lower: true })
+        const path = "/blog/" + slug
 
         createPage({
           path,
-          component:`${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
+          component: `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
           context: {
-            id: post.id
-          }
+            id: post.id,
+          },
         })
 
         return null
-
       })
     })
     .catch(e => {
