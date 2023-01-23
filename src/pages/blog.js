@@ -48,7 +48,7 @@ const Blog = ({ data }) => {
 
 export const blogPostsQuery = graphql`
 query MyQuery {
-  allMdx(sort: {frontmatter: {date: ASC}}) {
+  allMdx(sort: {frontmatter: {date: DESC}}) {
       nodes {
         frontmatter {
           title

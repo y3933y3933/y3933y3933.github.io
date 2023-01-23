@@ -5,7 +5,7 @@ import CodeBlock from './codeBlock'
 const H1 = styled.h1`
 font-size:2.25rem;
 line-height:1.25;
-margin:20px 0;
+margin:28px 0;
 `
 
 
@@ -13,17 +13,19 @@ margin:20px 0;
 const H2 = styled.h2`
     font-size:1.875rem;
     line-height:1.25;
-    margin-bottom:16px;
+    margin:28px 0;
 
 `
 
 const H3 = styled.h3`
     font-size:1.5rem;
     line-height:1.25;
+    margin:20px 0 ;
 `
 
 const P = styled.p`
     font-size:1.25rem;
+    line-height: 2;
     // margin-bottom:16px;
 
 `
@@ -31,7 +33,7 @@ const P = styled.p`
 
 const Hr = styled.hr`
     color:#cbd5e0;
-    margin:20px 0;
+    margin:28px 0;
 `
 
 const BlockQuote = styled.blockquote`
@@ -41,7 +43,7 @@ padding-left:2rem;
 padding-top:10px;
 padding-bottom:10px;
 font-size:1.25rem;
-margin:20px 0;
+margin:28px 0;
 `
 
 const Th = styled.th`

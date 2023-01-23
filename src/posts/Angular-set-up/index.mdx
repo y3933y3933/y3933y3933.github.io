@@ -1,0 +1,90 @@
+---
+title: 【Angular起手式】建置環境
+date: "2023-01-23T13:22:42.848Z"
+featuredImgUrl: https://user-images.githubusercontent.com/28300286/214067370-5c860982-516d-433e-b836-fb259f45b268.png
+featuredImgAlt: Angular
+tag: Angular
+---
+
+> 此系列文參考[Angular 官方文件](https://angular.tw/)，使用 Angular 15.1 的版本
+
+# 前言
+
+猶記剛開始接觸 Angular 框架時，就被它龐大的架構弄得暈頭轉向，那時候還是 Web 小白的我，連生命週期是什麼都還一知半解，勉勉強強看了官方文件的幾個章節就上陣，更多的 Angular 知識都是靠教學影片來吸收，直到現在寫了 Angular 將近快兩年，還是沒有認真看完官方文件，最近重新瀏覽一下，發現有許多新鮮的工具及寫法。
+
+<br />
+
+此系列文一來是為自己做個筆記，二來是提供給剛步入 Angular，但是看官方文件卻又看不太懂的人，會盡量用平易近人的語言來說明 Angular 框架及其功能。
+
+# 環境建置
+
+## Node.js (Required)
+
+`Node.js`是一個 JavaScript 的執行環境，在過去，JS 的程式碼只能在瀏覽器中被解析執行，`Node.js`的出現使得 JS 也能夠在本地環境中執行。
+
+<br />
+安裝Node.js可以選擇到[Node.js官網](https://nodejs.org/en/)下載相對應的版本，但在這裡我會推薦另一種安裝Node.js的方法—`nvm`
+
+### Nvm
+
+`nvm`是 Node Version Manager 的縮寫，用來管理 Node 版本，在開發專案時，如果有不同專案使用不同的 Node 版本，這時候有個管理器可以切換版本就非常方便了。
+
+<br />
+
+安裝 Nvm 方法可以到[Github 庫](https://github.com/nvm-sh/nvm)看安裝步驟，Windows 有[安裝工具](https://github.com/coreybutler/nvm-windows)可以使用，macOS 則需要依照指示輸入指令。
+
+<br />
+安裝成功後在終端機上輸入以下指令:
+
+```
+nvm // 確保安裝成功，如未安裝成功會跳出錯誤訊息
+nvm install <Node.js版本> // 安裝特定版本的Node.js
+nvm use <Node.js版本>  // 使用特定版本的Node.js
+```
+
+![nvm 安裝成功示意圖](https://user-images.githubusercontent.com/28300286/214076304-e4bc7fd5-38ab-4d53-93e1-0231f5955147.png)
+
+<br />
+本文使用Angular 15.1的版本，根據[官方文件](https://unpkg.com/browse/@angular/core@15.0.0/package.json)，適配的Node.js版本為`14.20.x`、`16.13.x`及`18.10.x`。
+
+![Angular 15.1 node.js version](https://user-images.githubusercontent.com/28300286/214099253-8724d602-027f-41d1-af03-aecfc6d4e01f.png)
+
+## Angular CLI (Required)
+
+Angular CLI 是 Angular 官方提供的操作工具，方便開發人員建置專案(如:打包、測試等)，安裝方法只需要在命令列輸入以下指令:
+
+```
+npm install -g @angular/cli
+```
+
+<br/>
+要確認是否成功安裝Angula CLI，可以在命令列輸入以下指令:
+```
+ng version
+```
+成功就會看到類似以下的畫面:
+![ng version](https://user-images.githubusercontent.com/28300286/214102847-898f79e3-a066-4367-a715-2a51c3dea625.png)
+## VScode (Optional)
+VScode是一個免費的原始碼編輯器，如果有在寫Web Application的夥伴，應該對其不陌生，當然也可以使用其他編輯器來撰寫。
+<br/>
+使用VScode其中一個好處是有許多別人撰寫好的Extensions來幫助我們更便利地撰寫程式碼，這裡針對開發Angular，推薦保哥的Angular Extension Pack。
+<br/>
+在VSCode的Extensions區搜尋Angular就會看到了。
+![Angular Extension](https://user-images.githubusercontent.com/28300286/214102017-1690f9ee-1200-4484-bb58-3ad00cc6dc7c.png)
+
+# 建立專案
+在命令列輸入以下指令:
+```
+ng new <自訂的專案名稱> 
+```
+Angular CLI會詢問一些專案配置的問題，如果還不熟悉的可以先選預設，之後再慢慢了解那些配置選項。
+
+# 啟動專案
+上述動作完成後，在命令列上切換到建立的專案的位置，並輸入啟動指令:
+```
+cd <專案名稱> // 切換到專案資料夾的指令
+ng serve --open // 啟動angular專案並打開網頁
+
+```
+此時在[localhost:4200](http://localhost:4200/)(Angular CLI預設)會看到啟動的網站畫面。
+![ng serve](https://user-images.githubusercontent.com/28300286/214103924-ffeb3b38-6e04-4004-a6bc-8ca106cf72f5.png)
