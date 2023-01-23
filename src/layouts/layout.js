@@ -21,6 +21,7 @@ const StyledWrapper = styled.div`
 const StyledMain = styled.main`
   ${ContainerStyles}
    flex:1;
+   width:100%;
    display:block;
    padding-top:24px;
    padding-bottom:24px;
