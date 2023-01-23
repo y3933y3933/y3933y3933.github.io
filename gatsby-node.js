@@ -26,7 +26,6 @@ exports.onCreateNode = async ({
   createNodeId,
   getCache,
 }) => {
-  // For all MarkdownRemark nodes that have a featured image url, call createRemoteFileNode
   if (
     node.internal.type === "Mdx" &&
     node.frontmatter.featuredImgUrl !== null

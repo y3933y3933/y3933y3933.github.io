@@ -14,7 +14,8 @@ const theme = {
     },
     langBackground: {
         js: '#f7df1e',
-        jsx: '#f7df1e'
+        jsx: '#f7df1e',
+        text:'white'
     },
     langColor: {
         js: 'black',

@@ -45,7 +45,7 @@ const About = () => {
             </Section>
 
             <Section >
-                <StaticImage src="../images/about_meme.jpg" alt="meme" placeholder="dominantColor"
+                <StaticImage src="https://user-images.githubusercontent.com/28300286/213926946-2b51d38b-f04c-4175-a1d3-84728803cfcd.jpg" alt="meme" placeholder="dominantColor"
                     width={700}
                 />
             </Section>

@@ -5,12 +5,16 @@ import CodeBlock from './codeBlock'
 const H1 = styled.h1`
 font-size:2.25rem;
 line-height:1.25;
+margin:20px 0;
 `
+
 
 
 const H2 = styled.h2`
     font-size:1.875rem;
     line-height:1.25;
+    margin-bottom:16px;
+
 `
 
 const H3 = styled.h3`
@@ -20,6 +24,8 @@ const H3 = styled.h3`
 
 const P = styled.p`
     font-size:1.25rem;
+    // margin-bottom:16px;
+
 `
 
 
@@ -35,6 +41,7 @@ padding-left:2rem;
 padding-top:10px;
 padding-bottom:10px;
 font-size:1.25rem;
+margin:20px 0;
 `
 
 const Th = styled.th`
@@ -48,6 +55,17 @@ background-color: #f9f2f4;
 overflow-wrap: break-word;
 `
 
+
+const Link = styled.a`
+color:${(props) => props.theme.color.link};
+cursor:pointer;
+
+&:hover{
+ text-decoration-line: underline;
+
+}
+`
+
 const components = {
     h1: props => <H1 {...props} />,
     h2: props => <H2 {...props} />,
@@ -57,7 +75,8 @@ const components = {
     blockquote: props => <BlockQuote {...props} />,
     th: props => <Th {...props} />,
     pre: props => <CodeBlock {...props} />,
-    code: props => <Code {...props} />
+    code: props => <Code {...props} />,
+    a:props=><Link {...props}/>
 }
 
 export default components

@@ -8,7 +8,9 @@ import * as slugify from 'slugify'
 const Wrapper = styled.section`
   display:grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-
+  border:1px solid #eee;
+  border-radius:5px;
+  overflow:hidden;
 
  @media (min-width:${(props) => props.theme.size.md}){
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -40,6 +42,7 @@ const Block = styled.div`
  align-items-center;
  justify-content:center;
  background:black;
+ 
 
  @media (min-width:${(props) => props.theme.size.md}){
   flex:1;

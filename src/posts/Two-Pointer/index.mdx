@@ -1,0 +1,116 @@
+---
+title: 【用JS前進LeetCode之路】Two Pointers實戰
+date: "2023-01-22T13:22:42.848Z"
+featuredImgUrl: https://user-images.githubusercontent.com/28300286/213918135-c983e79e-7b79-4bad-bd23-10ec23440d2b.png
+featuredImgAlt: Two pointer
+tag: LeetCode
+---
+
+> 本系列文為《[Grokking Coding Interview Patterns in JavaScript](https://www.educative.io/courses/grokking-coding-interview-patterns-javascript)》課程的學習筆記。
+
+
+# 簡介
+Two Pointers顧名思義就是使用兩個指針遍歷數組。
+
+
+
+# [Reverse Words in a String III](https://leetcode.com/problems/reverse-words-in-a-string-iii/description/)
+## 題意
+給一句子，反轉句子的單詞，如:
+```
+Input: s = "God Ding"
+Output: "doG gniD"
+
+```
+
+## 思路
+用雙指針找出每個單詞開頭與結尾。
+
+```js
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var reverseWords = function (s) {
+    s = [...s]
+    let len = s.length
+    let start = 0
+    let end = 0
+    while (true) {
+        // 找出每個單字的開頭
+        while (start < len && s[start] === ' ') start += 1
+        if(start === len) break;
+        end = start + 1
+        // 找出每個單字的結尾
+        while(end < len && s[end] !== ' ') end+=1
+        s = reverseStr(s,start,end-1)
+        start = end
+    }
+
+    return s.join('')
+};
+
+function reverseStr(s, start, end) {
+    while (start < end) {
+        [s[start], s[end]] = [s[end], s[start]]
+        start++
+        end--
+    }
+
+    return s
+}
+
+```
+
+# [Valid Palindrome II](https://leetcode.com/problems/valid-palindrome-ii/)
+## 題意
+給予一個字串，最多可以拿掉<b>一個字母</b>，使得該字串成為迴文
+```
+Input: s = "abca"
+Output: true // 刪除c的話就會是迴文
+
+```
+
+## 思路
+用雙指針檢查字串左右兩邊是否相符，有不符合則跳過該字母，分別檢查字母的左右兩邊。
+
+
+```js
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var validPalindrome = function (s) {
+    let left = 0
+    let right = s.length - 1
+    let misMatch = 0
+    let result;
+    
+    while (left <= right) {
+        if (misMatch > 1) return false
+
+        if (s[left] === s[right]) {
+            left++
+            right--
+        } else {
+            misMatch++
+            result = twoPointer(s, left + 1, right) || twoPointer(s, left, right - 1)
+            return result
+        }
+    }
+
+    return true
+};
+
+function twoPointer(s, left, right) {
+    while (left <= right) {
+        if (s[left] !== s[right]) {
+            return false
+        }
+        left++
+        right--
+    }
+    return true
+}
+
+```

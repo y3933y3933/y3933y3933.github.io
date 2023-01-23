@@ -6,6 +6,9 @@ import Seo from '../components/seo'
 
 const CardList = styled.div`
 width:100%;
+display:flex;
+flex-direction:column;
+row-gap: 2rem;
 `
 
 const Title = styled.h2`
