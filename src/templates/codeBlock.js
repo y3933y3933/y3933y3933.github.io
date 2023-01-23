@@ -56,13 +56,13 @@ const CodeBlockWrapper = styled.div`
   margin:16px 0;
   border:1px solid #e5e5e5;
   border-radius:4px;
+  max-width:100%;
+  overflow:auto;
 `
 
 const File = styled.div`
   font-size:14px;
-//   padding:4px 1rem;
 padding-left:1rem;
-//   background:#fff9c4;
   display:flex;
 `
 

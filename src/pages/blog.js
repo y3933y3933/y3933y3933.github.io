@@ -4,6 +4,7 @@ import styled from "styled-components"
 import Card from "../components/card"
 import Seo from '../components/seo'
 
+
 const CardList = styled.div`
 width:100%;
 display:flex;
@@ -24,6 +25,7 @@ const Header = styled.div`
 `
 
 const Blog = ({ data }) => {
+
 
   return (
     <>
@@ -57,7 +59,7 @@ query MyQuery {
         id
         featuredImg {
           childImageSharp {
-            gatsbyImageData(height:320, layout: FIXED)
+            gatsbyImageData(height:320, layout: CONSTRAINED)
           }
         }
       }
