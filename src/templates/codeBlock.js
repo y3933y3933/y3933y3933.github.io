@@ -69,7 +69,7 @@ padding-left:1rem;
 const FileText = styled.span`
 color:#2d3748;
 flex-grow:1;
-border-bottom:2px solid #63b3ed;
+border-bottom:2px solid #eee;
 padding-top:4px;
 padding-bottom:4px;
 display:flex;
@@ -94,7 +94,7 @@ const Line = styled.span`
 const CodeBlock = props => {
     const className = props.children.props.className || "";
     const code = props.children.props.children.trim();
-    const language = className.match(langRegex) ? className.match(langRegex)[0] : 'text';
+    const language = className.match(langRegex) ? className.match(langRegex)[0].toLowerCase() : 'text';
     const file = className.match(fileRegex) ? className.match(fileRegex)[0] : '';
 
 

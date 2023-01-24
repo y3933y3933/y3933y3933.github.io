@@ -68,6 +68,13 @@ cursor:pointer;
 }
 `
 
+const Li = styled.li`
+    font-size:1.25rem;
+`
+
+
+
+
 const components = {
     h1: props => <H1 {...props} />,
     h2: props => <H2 {...props} />,
@@ -78,7 +85,8 @@ const components = {
     th: props => <Th {...props} />,
     pre: props => <CodeBlock {...props} />,
     code: props => <Code {...props} />,
-    a:props=><Link {...props}/>
+    a:props=><Link {...props}/>,
+    li:props=><Li {...props}/>,
 }
 
 export default components
