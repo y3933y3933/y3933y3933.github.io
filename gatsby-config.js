@@ -9,7 +9,7 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `久久安的個人網站`,
+    title: `Hamster`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,

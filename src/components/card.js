@@ -82,7 +82,6 @@ const Card = ({ frontmatter, excerpt, featuredImg }) => {
   const slug = frontmatter.slug ?? slugify(frontmatter.title, { lower: true })
   const path = "/blog/" + slug
 
-  console.log(frontmatter)
   return (
     <Wrapper>
       <Block>

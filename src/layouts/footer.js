@@ -2,14 +2,15 @@ import * as React from 'react'
 import styled from 'styled-components'
 import ContainerStyles from '../styles/containerStyle'
 
+const FooterWrapper =styled.footer`border-top:1px solid #eee;`
 
-const StyledFooter = styled.footer`
+const StyledFooter = styled.div`
     ${ContainerStyles}
     text-transform: uppercase;
     color:${(props) => props.theme.color.secondary};
     font-size:14px;
-    padding:20px 15px;
-    border-top:1px solid #eee;
+    padding:16px;
+    
 `
 
 const StyledLink = styled.a`
@@ -23,6 +24,6 @@ const StyledLink = styled.a`
     }
 `
 
-const Footer = () => <StyledFooter>&copy;2023 by CHIAO.  Powered by &nbsp;<StyledLink href="https://www.gatsbyjs.com/" target="_blank">Gatsby.js</StyledLink>.</StyledFooter>
+const Footer = () => <FooterWrapper><StyledFooter>&copy;2023 by CHIAO.  Powered by &nbsp;<StyledLink href="https://www.gatsbyjs.com/" target="_blank">Gatsby.js</StyledLink>.</StyledFooter></FooterWrapper>
 
 export default Footer
