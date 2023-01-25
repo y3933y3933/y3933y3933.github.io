@@ -6,6 +6,9 @@ import Seo from '../components/seo'
 import styled from 'styled-components'
 import components from './markdownStyles'
 import TableOfContents from '../components/tableOfContents'
+import Comments from '../components/comment'
+
+
 const Article = styled.article`
 `
 
@@ -35,6 +38,12 @@ cursor:pointer;
 }
 `
 
+const CommentsWrapper = styled.div`
+  border-top:1px solid #eee;
+  margin-top:40px;
+
+`
+
 const PostDetail = ({ data, children }) => {
   const { mdx } = data;
   console.log(mdx)
@@ -53,6 +62,9 @@ const PostDetail = ({ data, children }) => {
         <MDXProvider components={components} >
           {children}
         </MDXProvider>
+        <CommentsWrapper>
+          <Comments />
+        </CommentsWrapper>
 
       </Article>
     </>
