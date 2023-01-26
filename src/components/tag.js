@@ -22,7 +22,7 @@ const TagLabel = styled.span`
 const Tag = ({ edges, totalCount }) => {
   const tag = edges[0].node.frontmatter.tag
   return (
-    <TagWrapper>
+    <TagWrapper to={`/blog/${tag}`}>
       <TagLabel>{tag}</TagLabel>({totalCount})
     </TagWrapper>
   )

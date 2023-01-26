@@ -58,7 +58,6 @@ exports.createPages = async ({ graphql, actions }) => {
       frontmatter {
         title
         slug
-        tag
       }
       internal{
         contentFilePath
@@ -109,6 +108,51 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
+
+  // create blog-list by tag pages
+
+  const postsByTag = await graphql(`
+  query  {
+    allMdx {
+      group(field: {frontmatter: {tag: SELECT}}) {
+        edges {
+          node {
+            id
+            frontmatter {
+              tag
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  `)
+
+  if (postsByTag.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`)
+    return;
+  }
+
+  const tagGroup = postsByTag.data.allMdx.group
+  tagGroup.forEach((item) => {
+    const numPages = Math.ceil(item.edges.length / postsPerPage)
+    const tag = item.edges[0].node.frontmatter.tag
+    Array.from({ length: numPages }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? `/blog/${tag}` : `/blog/${tag}/${i + 1}`,
+        component: path.resolve(`./src/templates/blogListByTag.js`),
+        context: {
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numPages,
+          currentPage: i + 1,
+          tag
+        },
+
+      })
+    })
+  })
 
 
 

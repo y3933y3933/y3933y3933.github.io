@@ -1,7 +1,6 @@
 import * as React from "react"
 import Seo from "../components/seo"
 import styled from "styled-components"
-import CategoryIcon from "../images/icons/category.inline.svg"
 import { navigate, graphql } from "gatsby"
 import Card from "../components/card"
 
@@ -29,11 +28,7 @@ const TagWrapper = styled.div`
   }
 `
 
-const StyledIcon = styled(CategoryIcon)`
-  width: 24px;
-  height: 24px;
-  margin-right: 2px;
-`
+
 
 const CardList = styled.div`
   width: 100%;
@@ -43,20 +38,22 @@ const CardList = styled.div`
 `
 
 
-const Blog = ({ data }) => {
+const BlogListByTag = ({ data, pageContext }) => {
+  const tag = pageContext.tag
+  const { allMdx: { nodes } } = data
+
   return (
     <>
       <Header>
-        <Title>文章列表</Title>
-        <TagWrapper onClick={() => navigate('/blog/categories')}>
-          <StyledIcon />
-          分類
+        <Title>{tag}</Title>
+        <TagWrapper onClick={() => navigate('/blog')}>
+          全部文章
         </TagWrapper>
       </Header>
 
 
       <CardList>
-        {data.allMdx?.nodes.map(node => {
+        {nodes.map(node => {
           return <Card key={node.id} {...node} />
         })}
       </CardList>
@@ -65,8 +62,8 @@ const Blog = ({ data }) => {
 }
 
 export const blogPostsQuery = graphql`
-  query MyQuery($skip: Int!)  {
-    allMdx(skip: $skip, limit: 10, sort: { frontmatter: { date: DESC } }) {
+  query MyQuery($skip: Int!, $tag:String!)  {
+    allMdx(skip: $skip, limit: 10, sort: { frontmatter: { date: DESC } } , filter: {frontmatter: {tag: {eq: $tag}}}) {
       nodes {
         frontmatter {
           title
@@ -88,6 +85,6 @@ export const blogPostsQuery = graphql`
 
 
 
-export default Blog
+export default BlogListByTag
 
-export const Head = () => <Seo title="文章列表" />
+export const Head = ({ data }) => <Seo title="" />

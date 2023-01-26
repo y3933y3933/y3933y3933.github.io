@@ -19,6 +19,8 @@ const Categories = ({ data }) => {
   const {
     allMdx: { group },
   } = data
+
+
   return (
     <>
       <Seo title="文章分類" />
@@ -26,7 +28,7 @@ const Categories = ({ data }) => {
         <Title>文章分類</Title>
         <TagWrapper>
           {group.map((d, i) => (
-            <Tag key={i} {...d} />
+            <Tag key={i}   {...d} />
           ))}
         </TagWrapper>
       </section>
