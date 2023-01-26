@@ -1,8 +1,8 @@
 import * as React from "react"
-import Seo from "../components/seo"
+import Seo from "../../components/seo"
 import { graphql } from "gatsby"
 import styled from "styled-components"
-import Tag from "../components/tag"
+import Tag from '../../components/tag'
 
 const Title = styled.h1`
   font-size: 32px;

@@ -50,7 +50,7 @@ const Blog = ({ data }) => {
       <Seo title="文章列表" />
       <Header>
         <Title>文章列表</Title>
-        <TagWrapper onClick={() => navigate('/categories')}>
+        <TagWrapper onClick={() => navigate('/blog/categories')}>
           <StyledIcon />
           分類
         </TagWrapper>
