@@ -46,57 +46,72 @@ exports.onCreateNode = async ({
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
+
+
+  // page Detail
   const postTemplate = path.resolve(`./src/templates/postDetail.js`)
-
-  const allBlogPostsQuery = `
-  query MyBlogPosts {
-    allMdx(sort: {frontmatter: {date: DESC}}) {
-      nodes {
-        id
-        frontmatter {
-          title
-          slug
-        }
-        internal{
-          contentFilePath
-        }
-       
+  const allPosts = await graphql(`
+  query{
+  allMdx(sort: {frontmatter: {date: DESC}}) {
+    nodes {
+      id
+      frontmatter {
+        title
+        slug
+        tag
       }
+      internal{
+        contentFilePath
+      }
+     
     }
+  }}
+  `)
+  if (allPosts.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`)
+    return;
   }
-  `
+  const posts = allPosts.data.allMdx.nodes
+  posts.forEach(post => {
+    // Create a slug for the path using the post title
+    // For example, 'Our First Post' => '/post/our-first-post'
+    const slug =
+      post.frontmatter.slug ??
+      slugify(post.frontmatter.title, { lower: true })
+    const path = "/blog/" + slug
 
-  return graphql(allBlogPostsQuery)
-    .then(result => {
-      if (result.errors) {
-        throw result.errors
-      }
-
-      // Get the posts
-      const posts = result.data.allMdx.nodes
-
-      // Loop through posts and create a page for each post
-      posts.forEach(post => {
-        // Create a slug for the path using the post title
-        // For example, 'Our First Post' => '/post/our-first-post'
-
-        const slug =
-          post.frontmatter.slug ??
-          slugify(post.frontmatter.title, { lower: true })
-        const path = "/blog/" + slug
-
-        createPage({
-          path,
-          component: `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
-          context: {
-            id: post.id,
-          },
-        })
-
-        return null
-      })
+    createPage({
+      path,
+      component: `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
+      context: {
+        id: post.id,
+      },
     })
-    .catch(e => {
-      throw e
+
+    return null
+  })
+
+
+  // create blog-list pages
+  const postsPerPage = 10;
+  const numPages = Math.ceil(posts.length / postsPerPage)
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/blog` : `/blog/${i + 1}`,
+      component: path.resolve(`./src/templates/blogList.js`),
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages,
+        currentPage: i + 1,
+      },
+
     })
+  })
+
+
+
+
 }
+
+

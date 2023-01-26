@@ -4,7 +4,7 @@ import { MDXProvider } from "@mdx-js/react"
 import { graphql } from 'gatsby'
 import Seo from '../components/seo'
 import styled from 'styled-components'
-import components from './markdownStyles'
+import components from '../styles/markdownStyles'
 import TableOfContents from '../components/tableOfContents'
 import Comments from '../components/comment'
 

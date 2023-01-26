@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from "styled-components"
-import CodeBlock from './codeBlock'
+import CodeBlock from '../components/codeBlock'
 
 const H1 = styled.h1`
 font-size:2.25rem;
@@ -85,8 +85,8 @@ const components = {
     th: props => <Th {...props} />,
     pre: props => <CodeBlock {...props} />,
     code: props => <Code {...props} />,
-    a:props=><Link {...props}/>,
-    li:props=><Li {...props}/>,
+    a: props => <Link {...props} />,
+    li: props => <Li {...props} />,
 }
 
 export default components
