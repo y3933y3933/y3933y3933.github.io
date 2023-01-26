@@ -31,7 +31,6 @@ const Section = styled.section`
 const About = () => {
   return (
     <>
-      <Seo title="關於我" />
       <Wrapper>
         <Section>
           <Title>關於我</Title>
@@ -58,3 +57,6 @@ const About = () => {
 }
 
 export default About
+
+
+export const Head = () => <Seo title="關於我" />

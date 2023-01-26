@@ -25,7 +25,6 @@ const Header = styled.div`
 
 const IndexPage = ({ data }) => (
   <>
-    <Seo title="首頁" />
     <section>
       <Header>
         <Title>最新文章</Title>
@@ -62,4 +61,8 @@ export const blogPostsQuery = graphql`
   }
 `
 
+
 export default IndexPage
+
+
+export const Head = () => <Seo title="首頁" />

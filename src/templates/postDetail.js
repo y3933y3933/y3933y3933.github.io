@@ -46,10 +46,8 @@ const CommentsWrapper = styled.div`
 
 const PostDetail = ({ data, children }) => {
   const { mdx } = data;
-  console.log(mdx)
   return (
     <>
-      <Seo title={mdx.frontmatter.title} />
       <Article>
         {/* <GatsbyImage image={getImage(frontmatter.featuredImg )} alt={post.frontmatter.altText} imgStyle={{ width: '100%' }} /> */}
         <ArticleTitle>{mdx.frontmatter.title}</ArticleTitle>
@@ -91,3 +89,9 @@ export const pageQuery = graphql`
     }
   }
 `
+
+
+
+export const Head = ({ data }) => {
+  return <Seo title={data.mdx.frontmatter.title} />
+}

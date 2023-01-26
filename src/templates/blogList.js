@@ -47,7 +47,6 @@ const CardList = styled.div`
 const Blog = ({ data }) => {
   return (
     <>
-      <Seo title="文章列表" />
       <Header>
         <Title>文章列表</Title>
         <TagWrapper onClick={() => navigate('/blog/categories')}>
@@ -91,3 +90,5 @@ export const blogPostsQuery = graphql`
 
 
 export default Blog
+
+export const Head = () => <Seo title="文章列表" />
