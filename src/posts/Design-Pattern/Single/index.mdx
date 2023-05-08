@@ -1,0 +1,93 @@
+---
+title: 【設計模式】單例模式
+date: "2023-05-08T00:00:00Z"
+featuredImgUrl: https://user-images.githubusercontent.com/28300286/236835275-cd020475-90c6-40e0-b1c9-d8b7179ee2ee.png
+featuredImgAlt: Singleton
+tag: design-pattern
+slug: design-pattern/singleton
+---
+
+![img](https://user-images.githubusercontent.com/28300286/236835275-cd020475-90c6-40e0-b1c9-d8b7179ee2ee.png)
+
+# 前言
+
+翻開設計模式的第一章，一定都會是由單例模式 (Singleton) 開場，就像大學 7000 單字從 a-z 都是從 abandon 開始一樣。
+
+單例模式是一個概念簡單易懂、又很常見的設計模式，每次看到單例模式，總會想到 SHE 的《Super Star》的歌詞 — 你是電，你是光，你是唯一的神話。
+
+單例模式到底是什麼？就讓我們來繼續看下去吧。
+
+# 什麼是單例模式？
+
+我們來說文解字，單例模式就是指一個類別中只有「單一」一個「實例」，如果不熟 OOP(物件導向模式)的人，可能對於實例這個概念不甚熟悉，來我們用程式碼來說明。
+
+假設你是唯一的神話，程式碼可以這樣寫，表示有一個名為 You 的類別(Class)，使用`new`建立的一個你的實例`you`。
+
+```
+public class You {
+}
+
+You you = new You();
+
+```
+
+但是任何人都可以透過`You`類別建立你，但這不被允許，因為你是唯一的神話，所以我們可以改寫成以下方法：
+
+```
+public class You {
+    private You(){
+
+    }
+}
+```
+在`You`類別中宣告了`private You()`，看起來跟前面87趴像，但是把`private You()`放在`class You()`內的寫法叫做建構式，也就是當你`new You()`的時候，實際上會呼叫 `private You()`這個方法。
+
+
+是不是有點暈頭轉向了呢？那前面描述可以先不用在意，只要注意：
+
+👉　把建構器變成類別私有(`private`)，大家不能隨意建立你的實例。
+
+
+但是，私有化後外部的人都不能建立你，這個宇宙根本就沒有你😭。
+
+那麼我們改寫一下，使得外面的人雖然不能建立，但可以呼叫`getInstance()`方法取得你的實例：
+```
+public class You{
+    private static You you = new You();
+
+    private You(){
+    }
+
+    public static You getInstance(){
+        return you;
+    }
+
+}
+```
+
+---
+
+# 惰性單例
+看到前面大家會想說，哇真的是一塊小蛋糕🍰，這不是在汙辱我智商嗎？這也配拿出來講，別急，單例模式還有叫做「惰性單例」的變化版。
+
+就像作業總是要拖到前一天才寫，<span  style={{textDecoration: "line-through"}}>工程師總是要等到PM開單才開始做</span>，惰性單例指的就是等到要用的時候才去建立實例。
+
+```
+public class You{
+    private static You you;
+
+    private You(){
+    }
+
+    public static You getInstance(){
+        if(you == null){
+            you = new You();
+        }
+        return you;
+    }
+
+}
+
+```
+
+為什麼要偷懶呢？好處時有時候建立實例很耗資源，所以等到真的有要用再去建立它，可以節省一些資源。但缺點是第一次建立實例時候會比一開始就建立好來的慢。

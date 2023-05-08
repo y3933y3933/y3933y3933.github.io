@@ -26,8 +26,7 @@ const H3 = styled.h3`
 const P = styled.p`
     font-size:1.25rem;
     line-height: 2;
-    // margin-bottom:16px;
-
+    margin-bottom:8px;
 `
 
 
