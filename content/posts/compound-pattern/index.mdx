@@ -1,0 +1,72 @@
+---
+title: 使用Compound Pattern建立Expand元件
+date: 2023-11-16
+tags:
+  - React
+---
+
+## 前言
+
+## 什麼是Compound Pattern?
+`Compound Pattern` 是一種React的元件設計模式。
+
+**Compound**指的是組合，意思是由兩個或以上的元件所組合而成的元件，且會有一個主要的元件(通常是**parent component**)，其它元件如果不在主元件內使用就無效。
+
+常見的例子如：Select、Expand元件
+
+```jsx
+<Select>
+  <Option>選項1</Option>
+  <Option>選項2</Option>
+<Select>
+
+```
+
+## Expand元件設計
+Expand元件是一種可展開的元件，如圖所示：
+
+![expand](https://github.com/y3933y3933/blog/assets/28300286/1b17d4e4-3d7f-48e5-b8ca-ed85a6f0c201)
+(圖片來源為[shadcn.ui](https://ui.shadcn.com/docs/components/accordion))
+
+
+
+可以切分為 4 個元件：
+
+
+| 元件          | 說明     | 
+| ----------------------- | ------------ |
+| Expand | Parent Component  | 
+| Header | 表頭，固定會顯示   | 
+| Icon           | 點擊後會顯示或隱藏Body內容| 
+| Body                   | 依照展開與否顯示的內容 | 
+
+
+
+## 實作技巧一：`useContext`
+控制是否顯示的state，會透過`useContext`傳遞給子元件使用。
+
+
+```jsx
+import React, { createContext, useState } from 'react'
+
+const ExpandContext = createContext()
+
+const Expand = ({children}) => {
+  const [expanded, setExpanded] = useState(false)
+  const toggle = setExpanded(prevExpanded => !prevExpanded)
+  return <ExpandContext.Provider value={expanded, toggle}>{children}</ExpandContext.Provider>
+}
+
+export default Expand
+
+```
+
+
+
+## 實作技巧二：`useCallback`＆`useMemo`
+
+
+
+
+## 參考資料
+- [pattern.dev](https://www.patterns.dev/react/compound-pattern)
