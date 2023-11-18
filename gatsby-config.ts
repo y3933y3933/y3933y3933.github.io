@@ -11,7 +11,7 @@ const config: GatsbyConfig = {
     siteTitle: `久安`,
     siteTitleAlt: `久安`,
     siteHeadline: `久安`,
-    siteUrl: `https://minimal-blog.lekoarts.de`,
+    siteUrl: `https://y3933y3933.github.io/`,
     siteDescription: `久安的技術部落格，有關前端、軟體開發的技術文章`,
     siteImage: `/banner.jpeg`,
     siteLanguage: `zh-tw`,
@@ -138,8 +138,6 @@ const config: GatsbyConfig = {
       },
     },
   ].filter(Boolean) as Array<PluginRef>,
-  pathPrefix: "/blog",
-
 }
 
 export default config
