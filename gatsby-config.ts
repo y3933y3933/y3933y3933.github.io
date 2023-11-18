@@ -8,14 +8,14 @@ const config: GatsbyConfig = {
     // You can overwrite values here that are used for the SEO component
     // You can also add new values here to query them like usual
     // See all options: https://github.com/LekoArts/gatsby-themes/blob/main/themes/gatsby-theme-minimal-blog/gatsby-config.mjs
-    siteTitle: `久安的部落格`,
-    siteTitleAlt: `Minimal Blog - Gatsby Theme`,
-    siteHeadline: `Minimal Blog - Gatsby Theme from @lekoarts`,
+    siteTitle: `久安`,
+    siteTitleAlt: `久安`,
+    siteHeadline: `久安`,
     siteUrl: `https://minimal-blog.lekoarts.de`,
-    siteDescription: `Typography driven, feature-rich blogging theme with minimal aesthetics. Includes tags/categories support and extensive features for code blocks such as live preview, line numbers, and line highlighting.`,
-    siteImage: `/banner.jpg`,
-    siteLanguage: `en`,
-    author: `@lekoarts_de`,
+    siteDescription: `久安的技術部落格，有關前端、軟體開發的技術文章`,
+    siteImage: `/banner.jpeg`,
+    siteLanguage: `zh-tw`,
+    author: `@Joanne`,
   },
   trailingSlash: `always`,
   plugins: [
@@ -36,7 +36,7 @@ const config: GatsbyConfig = {
         externalLinks: [
           {
             name: `Linkedin`,
-            url: `https://twitter.com/lekoarts_de`,
+            url: `https://www.linkedin.com/in/hamster3933/`,
           },
           // {
           //   name: `Homepage`,
