@@ -1,0 +1,94 @@
+---
+title: 在 macOS 上建置前端開發環境指南
+date: 2023-11-22
+slug: /frontend-environment-setup-mac
+tags:
+  - Frontend
+---
+
+## 前言
+筆者今年從Windows系統換成macOS，此文提供前端人員在macOS上建置開發環境的步驟，以下操作會頻繁使用終端機，macOS終端機內建有`zsh`或`bash`，本文以`zsh`為範例。
+
+終端機打開方式，`command+空白鍵`打開Spotlight搜尋，輸入`term`，即可打開終端機
+![terminal](https://github.com/y3933y3933/notes/assets/28300286/70d61843-0044-4f43-9649-502e0adfa6f2)
+
+## [HomeBrew](https://brew.sh/)
+Homebrew 是一個 macOS 上的開源套件管理系統，方便開發者安裝、更新套件。
+
+### 安裝HomeBrew
+依照官網說明，打開終端機
+```zsh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+### 添加homebrew至環境變數
+在終端機上執行`brew`，可能會出現`brew command not found`的錯誤訊息，需要輸入以下指令，將homebrew添加到系統的`PATH`環境變數中：
+
+```zsh
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/<ComputerName>/.zprofile
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
+`<ComputerName>`要替換成自己電腦的使用者名稱，不清楚的可以打開`Finder`（資料夾），左上角**Finder > 設定 > 側邊欄**，圖示為一個房子的，就是你的使用者名稱。
+
+![computerName](https://github.com/y3933y3933/notes/assets/28300286/fef40399-a644-422c-8609-dc2bd6f6f3f0)
+
+## Oh-my-zsh
+Oh-my-zsh套件用於美化原本的terminal
+
+### 安裝Oh-my-zsh
+```zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+### 主題設定
+輸入以下指令，可打開.zshrc檔案，找到其中`ZSH_THEME="<theme>"`，替換成想要的[主題](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)。
+```zsh
+vim ~/.zshrc
+```
+
+### Vim操作
+- `i`:進入insert模式，此時可輸入字
+- `esc`：退出insert模式
+- `:wq`：退出並保存
+
+
+## Git
+
+### 安裝Git
+```zsh
+brew install git
+```
+
+### Git使用者設定
+```zsh
+git config --global user.name ""
+git config --global user.email ""
+```
+
+## [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+`nvm`是node版本管理器，不同專案使用的node版本可能不同，安裝`nvm`方便切換。
+### 安裝
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+```
+
+### nvm 指令
+```
+nvm install <version> // 安裝特定版本
+nvm use <version>  // 使用特定版本
+nvm ls   // 列出目前有安裝的版本
+```
+
+## [VsCode](https://code.visualstudio.com/)
+### 設定 [`code .`](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line)
+
+打開Vscode，按下`Cmd+shift+P`，再輸入`shell command`，選擇`Install code ....`，之後就可以在終端機中直接用`code .`開啟VsCode。
+
+![code .](https://github.com/y3933y3933/notes/assets/28300286/9030cdaf-e591-4090-b37b-886b79306bc8)
+
+### Extensions
+- [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode):程式碼排版
+- [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme): 檔案圖示
+- [Git Extension Pack](https://marketplace.visualstudio.com/items?itemName=doggy8088.git-extension-pack): Git相關套件
