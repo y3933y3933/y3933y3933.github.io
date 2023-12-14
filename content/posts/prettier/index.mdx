@@ -1,0 +1,56 @@
+---
+title: Prettier 實用指南：讓你的程式碼風格更一致
+date: 2023-12-14
+slug: /prettier
+tags:
+  - Tool
+---
+本文旨在介紹如何使用`Prettier`結合`Vscode`編輯器的實作。
+
+## 什麼是[Prettier](https://prettier.io/)?
+`Prettier`是程式碼排版工具，支援多種類型的程式碼，如：`JavaScript`、`JSX`、`TypeScript`等，是前端必備的工具之一。
+
+
+## 為什麼需要`Prettier`
+有了`Prettier`，開發人員可以省去手動排版的瑣事，也可以讓團隊的程式碼風格統一，像筆者之前專案未使用`Pretter`時，`git`常出現未異動檔案內容，只是排版不一致的狀況。
+
+
+## Vscode設定
+1. 安裝vscode extension - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+![Prettier Code format](https://github.com/y3933y3933/y3933y3933.github.io/assets/28300286/d8a676dc-b980-40f0-8795-fb5a11ed7dac)
+
+2. 打開vscode 設定檔，勾選 **format on save**，這樣儲存檔案時會自動幫你排版
+
+    mac快捷鍵：`command + ,`
+    windows快捷鍵：`ctrl + ,`
+    ![settings](https://github.com/y3933y3933/y3933y3933.github.io/assets/28300286/f2f00dda-05e0-452d-b0e5-05bfc7b84451)
+
+3. 打開`Require Config` (optional)，如果你在一個專案中沒有設定config檔案，Prettier 就不會format你的程式碼。
+   ![require config](https://github.com/y3933y3933/y3933y3933.github.io/assets/28300286/a2326c9c-31fe-40f5-b132-e1180f538ebd)
+
+
+## 專案設置
+1. 初始化專案: `npm init -y`
+2. 安裝prettier套件
+    ```bash
+    npm install -D prettier
+    ```
+
+3. 在根目錄建立`.prettierrc`檔案，此檔案為prettier的設定檔，可以依照喜好設定排版風格，設定選項可以參考[官網](https://prettier.io/docs/en/options)或是使用預設。
+
+    ```bash
+    node --eval "fs.writeFileSync('.prettierrc','{}\n')"
+    ```
+    <br/>
+    ![.prettierrc](https://github.com/y3933y3933/y3933y3933.github.io/assets/28300286/d2b3e1ae-c675-4261-aa64-d17f886cf570)
+
+4. 在根目錄建立`.prettierignore`，用來放哪些檔案不需要被排版，類似於`.gitignore`的寫法：
+    ```none title=.prettierignore
+    # Ignore artifacts:
+    build
+    coverage
+
+    # Ignore all HTML files:
+    **/*.html```
+
+
